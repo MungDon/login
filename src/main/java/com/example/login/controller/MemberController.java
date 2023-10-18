@@ -6,13 +6,12 @@ import com.example.login.dto.response.MemberResponse;
 import com.example.login.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -43,10 +42,11 @@ public class MemberController {
 
         return "list";
     }
+
     @GetMapping("/logout")
     public String memberLogout(HttpServletRequest req) {
         HttpSession session = req.getSession(false);
-        if(session != null){
+        if (session != null) {
             session.invalidate();
         }
         return "login";
