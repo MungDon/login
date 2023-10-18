@@ -6,6 +6,7 @@ import com.example.login.dto.response.MemberResponse;
 import com.example.login.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +41,15 @@ public class MemberController {
         session.setAttribute("num", memberResponse.getNum());
         session.setMaxInactiveInterval(1800);
 
-        return "index";
+        return "list";
+    }
+    @GetMapping("/logout")
+    public String memberLogout(HttpServletRequest req) {
+        HttpSession session = req.getSession(false);
+        if(session != null){
+            session.invalidate();
+        }
+        return "login";
     }
 
     @GetMapping("/join")
