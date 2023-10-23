@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <header class="header_con" th:fragment="header">
+        <div class="h_login">
+            <a href="/member/login">로그인</a>
+        </div>
+        <form action="/member/logout" method="post" class="logout_form">
+            <button>로그아웃</button>
+        </form>
+    </header>
+
+
+</body>
+</html>

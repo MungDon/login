@@ -1,10 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<div class="container">
+    <header th:replace="header :: header"></header>
+    <main class="boardList_main_con">
+            <div class="boardAdd_btn_box">
+                <a href=""></a>
+            </div>
+        <div class="boardList_main_box" th:if="${!#lists.isEmpty(posts)}">
+            <ul class="boardList_content_top">
+                <li class="board_no">No</li>
+                <li class="board_name">제목</li>
+                <li class="board_sport">종목</li>
+                <li class="board_promiseDate">약속 일자</li>
+                <li class="board_writer">작성자</li>
+                <li class="board_createDate">작성일</li>
+                <li class="board_hit">조회수</li>
+            </ul>
+
+            <ul class="boardList_content" th:each="board:${posts}">
+                <li class="board_no" th:text="${board.id}"></li>
+                <li class="board_name">
+                    <a th:href="|/board/veiw/${board.id}|" th:text="${board.title}"></a>
+                </li>
+                <li class="board_writer" th:text="${board.writer}"></li>
+                <li class="board_createDate"
+                    th:text="${#temporals.format(board.createdDate,'yyyy-mm-dd-HH:mm')}"></li>
+                <li class="boardView_cnt" th:text="${board.viewCnt}"></li>
+            </ul>
+        </div>
+        <div class="boardList_main_box" th:if="${#lists.isEmpty(posts)}">
+            <span>리스트음슴</span>
+        </div>
+    </main>
+</div>
 
 </body>
 </html>
